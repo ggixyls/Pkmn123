@@ -33,16 +33,13 @@ public class CardImport {
 
             String parentStr = cardData.get(4);
             if (parentStr.endsWith(".txt")) {
-                Card parentCard = importCard(parentStr);
-                card.evolversFrom = parentCard;
+                card.evolvesFrom = importCard(parentStr);
             }
             else if (parentStr.equals("-")) {
-                Card parentCard = new Card();
-                card.evolversFrom = null;
+                card.evolvesFrom = null;
             }
             else {
-                Card parentCard = importCard(parentStr);
-                card.evolversFrom = parentCard;
+                card.evolvesFrom = importCard(parentStr);
             }
 
             String[] attacks = cardData.get(5).split(",");
