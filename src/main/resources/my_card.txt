@@ -1,0 +1,12 @@
+STAGE1
+Palossand
+140
+FIGHTING
+src/main/resources/evolves_from.txt
+H/Sandpot Trap/0,HH1/Land Crush/120
+GRASS
+-
+C
+Silver Tempest
+F
+Геворгян/Гагик/Левонович/БСБО-05-23
