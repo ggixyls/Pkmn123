@@ -2,6 +2,7 @@ package ru.mirea.pkmn;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 public class Card implements Serializable {
     public static final long serialVersionUID = 1L;
@@ -18,10 +19,13 @@ public class Card implements Serializable {
     String gameSet;
     char regulationMark;
     Student pokemonOwner;
+    String number;
+    UUID ID;
+
 
     public Card(PokemonStage pokemonStage, String name, int hp, EnergyType pokemonType, Card evolvesFrom,
                 List<AttackSkill> skills, EnergyType weaknessType, EnergyType resistanceType,
-                String retreatCost, String gameSet, char regulationMark, Student pokemonOwner) {
+                String retreatCost, String gameSet, char regulationMark, Student pokemonOwner, String number) {
         this.pokemonStage = pokemonStage;
         this.name = name;
         this.hp = hp;
@@ -34,6 +38,14 @@ public class Card implements Serializable {
         this.gameSet = gameSet;
         this.regulationMark = regulationMark;
         this.pokemonOwner = pokemonOwner;
+        this.number=number;
+    }
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public Card() {
@@ -107,6 +119,10 @@ public class Card implements Serializable {
         this.retreatCost = retreatCost;
     }
 
+    public Card getEvolvesFrom() {
+        return evolvesFrom;
+    }
+
     public String getGameSet() {
         return gameSet;
     }
@@ -133,19 +149,20 @@ public class Card implements Serializable {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "pokemonStage=" + pokemonStage +
-                ", name='" + name + '\'' +
-                ", hp=" + hp +
-                ", pokemonType=" + pokemonType +
-                ", evolvesFrom='" + evolvesFrom + '\'' +
-                ", skills=" + skills +
-                ", weaknessType=" + weaknessType +
-                ", resistanceType=" + resistanceType +
-                ", retreatCost='" + retreatCost + '\'' +
-                ", gameSet='" + gameSet + '\'' +
-                ", regulationMark='" + regulationMark + '\'' +
-                ", pokemonOwner=" + pokemonOwner +
+        return "Card{" + '\n' +
+                " pokemonStage=" + pokemonStage + '\n' +
+                " name='" + name + '\'' + '\n' +
+                " hp=" + hp + '\n' +
+                " pokemonType=" + pokemonType + '\n' +
+                " evolvesFrom=" + evolvesFrom + '\n' +
+                " skills=" + skills + '\n' +
+                " weaknessType=" + weaknessType + '\n' +
+                " resistanceType=" + resistanceType + '\n' +
+                " retreatCost='" + retreatCost + '\'' + '\n' +
+                " gameSet='" + gameSet + '\'' + '\n' +
+                " regulationMark=" + regulationMark + '\n' +
+                " pokemonOwner=" + pokemonOwner + '\n' +
+                " number=" + number + '\n' +
                 '}';
     }
 
@@ -157,8 +174,8 @@ public class Card implements Serializable {
         if (evolvesFrom==null){
             System.out.println("Из какого покемона эволюционирует: " + evolvesFrom);
         }
-        else{
-            System.out.println("Из какого покемона эволюционирует: Данные родителя указаны ниже");
+        else {
+            System.out.println("Из какого покемона эволюционирует: " + evolvesFrom.getName());
         }
         System.out.println("Способности атак: " + skills);
         System.out.println("Тип слабости: " + weaknessType);
@@ -169,9 +186,18 @@ public class Card implements Serializable {
         if (pokemonOwner != null) {
             System.out.println("Владелец карты: " + pokemonOwner);
         }
+        System.out.println("Номер карты: " + number);
         if (evolvesFrom != null) {
             System.out.println("\nИнформация о родителе покемона:");
             evolvesFrom.Info();
         }
+    }
+
+    public UUID getID() {
+        return ID;
+    }
+
+    public void setID(UUID id) {
+        this.ID = id;
     }
 }

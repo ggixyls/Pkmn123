@@ -1,6 +1,7 @@
 package ru.mirea.pkmn;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class Student implements Serializable {
     public static final long serialVersionUID = 1L;
@@ -10,7 +11,7 @@ public class Student implements Serializable {
     private String familyName;
     private String group;
 
-    public Student(String firstName, String surName, String familyName, String group) {
+    public Student(String surName, String firstName, String familyName, String group) {
         this.firstName = firstName;
         this.surName = surName;
         this.familyName = familyName;
@@ -55,11 +56,10 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "Фамилия = " + firstName +
-                ", Имя = " + surName +
-                ", Отчество = " + familyName +
-                ", Группа = " + group +
-                '}';
+        return
+                surName + " " +
+                firstName + " " +
+                familyName + ", " +
+                group;
     }
 }

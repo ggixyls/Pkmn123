@@ -49,7 +49,7 @@ public class CardImport {
                 String attackCoast = attackParts[0];
                 String attackName = attackParts[1];
                 int attackDamage = Integer.parseInt(attackParts[2]);
-                skills.add(new AttackSkill(attackName, attackCoast, attackDamage));
+                skills.add(new AttackSkill(attackName, null, attackCoast, attackDamage));
             }
             card.setSkills(skills);
 
@@ -74,6 +74,9 @@ public class CardImport {
             String[] ownerData = cardData.get(11).split("/");
             Student pokemonOwner = new Student(ownerData[0], ownerData[1], ownerData[2], ownerData[3]);
             card.setPokemonOwner(pokemonOwner);
+
+            String  number = cardData.get(12);
+            card.setNumber(number);
 
         } catch (IOException e) {
             System.err.println("Ошибка при чтении файла: " + e.getMessage());

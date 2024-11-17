@@ -6,14 +6,21 @@ public class AttackSkill implements Serializable {
     public static final long serialVersionUID = 1L;
 
     private String name;
+    private String description;
     private String cost;
     private int damage;
 
-    public AttackSkill(String name, String cost, int damage) {
+    public AttackSkill(String name, String descripion, String cost, int damage) {
         this.name = name;
+        this.description = descripion;
         this.cost = cost;
         this.damage = damage;
     }
+
+    public String getDescription() {return description;}
+
+    public void setDescription(String descripion) {this.description = descripion;}
+
     public String getName() {
         return name;
     }
@@ -41,9 +48,10 @@ public class AttackSkill implements Serializable {
     @Override
     public String toString() {
         return "AttackSkill{" +
-                "Имя = " + name  +
-                ", Цена = " + cost +
-                ", Урон = " + damage +
+                "name='" + name + '\'' +
+                ", descripion='" + description + '\'' +
+                ", cost='" + cost + '\'' +
+                ", damage=" + damage +
                 '}';
     }
 }

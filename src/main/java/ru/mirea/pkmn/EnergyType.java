@@ -12,7 +12,5 @@ public enum EnergyType {
     FAIRY,
     DRAGON,
     COLORLESS;
-    EnergyType() {
-    }
 }
 

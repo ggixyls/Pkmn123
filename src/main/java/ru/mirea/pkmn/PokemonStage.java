@@ -6,7 +6,4 @@ public enum PokemonStage {
     STAGE2,
     VSTAR,
     VMAX;
-
-    PokemonStage() {
-    }
 }
