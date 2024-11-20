@@ -22,7 +22,6 @@ public class DatabaseServiceImpl implements DatabaseService {
     private final Properties databaseProperties;
 
     public DatabaseServiceImpl() throws SQLException, IOException {
-
         databaseProperties = new Properties();
         databaseProperties.load(new FileInputStream("src/main/resources/database.properties"));
 
@@ -32,13 +31,6 @@ public class DatabaseServiceImpl implements DatabaseService {
                 databaseProperties.getProperty("database.password")
         );
         System.out.println("Connection is " + (connection.isValid(0) ? "up" : "down"));
-
-        try {
-            Statement st = connection.createStatement();
-            st.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private PokemonStage setStage(String stage) {
@@ -53,7 +45,7 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     private EnergyType setType(String type) {
-        if (type == null) {
+        if (type == null || type.equalsIgnoreCase("null")) {
             return null;
         }
         return switch (type) {
@@ -73,13 +65,12 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     @Override
-    public Card getCardFromDatabase(String cardName) {
-        Card card = null; // Объявляем переменную card вне блока try
-        String cardOwnerId = null; // Переменная для хранения id владельца покемона
-        String evolvesFrom = null; // Переменная для хранения id покемона-родителя
+    public Card getCardFromDatabase(String cardName) throws IOException {
+        Card card = null;
+        String evolvesFrom = null;
 
         try (Statement st = connection.createStatement()) {
-            ResultSet rs = st.executeQuery("SELECT * FROM card WHERE name = '" + cardName + "';");
+            ResultSet rs = st.executeQuery("SELECT * FROM card WHERE name = '" + cardName + "' AND evolves_from IS NOT NULL;");
 
             if (rs.next()) {
                 String name = rs.getString("name");
@@ -90,21 +81,10 @@ public class DatabaseServiceImpl implements DatabaseService {
                 String weakness_type = rs.getString("weakness_type");
                 String resistance_type = rs.getString("resistance_type");
                 String attack_skill = rs.getString("attack_skills");
-                cardOwnerId = rs.getString("pokemon_owner");
-                evolvesFrom = rs.getString("evolves_from");
+                String  ownerUuidFromDB = rs.getString("pokemon_owner");
 
-                String evolvesUuidFromDB = rs.getString("evolves_from");
-                ;
-                Card evolvesCard;
-                if (evolvesUuidFromDB != null) {
-                    try {
-                        UUID evolvesUUID = UUID.fromString(evolvesUuidFromDB);
-                        evolvesCard = getEvolvesFrom(evolvesUUID);
-                        card.setEvolvesFrom(evolvesCard);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
+
+                evolvesFrom = rs.getString("evolves_from");
 
                 // Считываем навыки атаки
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -119,58 +99,96 @@ public class DatabaseServiceImpl implements DatabaseService {
                     );
                     attacksList.add(attack);
                 }
+                Student owner = ownerUuidFromDB != null ? getPokemonOwner(UUID.fromString(ownerUuidFromDB)) : null;
+
 
                 String pokemon_type = rs.getString("pokemon_type");
                 char regulation_mark = rs.getString("regulation_mark").charAt(0);
                 String card_number = rs.getString("card_number");
 
-                // Создаем объект Card с временными данными
+                // Создаем объект Card
                 card = new Card(
                         setStage(stage),
                         name,
                         hp,
                         setType(pokemon_type),
-                        null,  // На данный момент эволюция - null
+                        null,
                         attacksList,
                         setType(weakness_type),
                         setType(resistance_type),
                         retreat_cost,
                         game_set,
                         regulation_mark,
-                        null, // Временно null для владельца, получим позже
+                        owner,
                         card_number
                 );
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return null; // Возвращаем null в случае ошибки
+            return null;
         }
 
-        // После закрытия Statement, получаем владельца покемона
-        if (card != null && cardOwnerId != null) {
-            try (Statement ownerStatement = connection.createStatement()) {
-                ResultSet ownerResultSet = ownerStatement.executeQuery(
-                        "SELECT * FROM student WHERE id = '" + cardOwnerId + "';");
-                if (ownerResultSet.next()) {
-                    Student pokemon_owner = new Student(
-                            ownerResultSet.getString("familyName"),
-                            ownerResultSet.getString("firstName"),
-                            ownerResultSet.getString("patronicName"),
-                            ownerResultSet.getString("group"));
-                    card.setPokemonOwner(pokemon_owner); // Устанавливаем владельца покемона
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+        if (card != null && evolvesFrom != null) {
+            Card parentCard = getCardFromDatabaseById(UUID.fromString(evolvesFrom));
+            if (parentCard != null) {
+                card.setEvolvesFrom(parentCard);
             }
         }
 
-        // После получения владельца, получаем информацию о родительском покемоне
-        if (card != null && evolvesFrom != null) {
-            Card parentCard = getCardFromDatabase(evolvesFrom);
-            card.setEvolvesFrom(parentCard); // Устанавливаем родительский покемон
-        }
+        return card;
+    }
 
-        return card; // Возвращаем объект Card
+    private Card getCardFromDatabaseById(UUID evolvesFromId) throws IOException {
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM card WHERE id = ?")) {
+            ps.setObject(1, evolvesFromId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String name = rs.getString("name");
+                int hp = rs.getInt("hp");
+                String game_set = rs.getString("game_set");
+                String stage = rs.getString("stage");
+                String retreat_cost = rs.getString("retreat_cost");
+                String weakness_type = rs.getString("weakness_type");
+                String resistance_type = rs.getString("resistance_type");
+                String attack_skill = rs.getString("attack_skills");
+                String pokemon_type = rs.getString("pokemon_type");
+                char regulation_mark = rs.getString("regulation_mark").charAt(0);
+                String card_number = rs.getString("card_number");
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                JsonNode jsonNode = objectMapper.readTree(attack_skill);
+                List<AttackSkill> attacksList = new ArrayList<>();
+                for (JsonNode attackNode : jsonNode) {
+                    AttackSkill attack = new AttackSkill(
+                            attackNode.path("name").asText(),
+                            attackNode.path("description").asText(),
+                            attackNode.path("cost").asText(),
+                            attackNode.path("damage").asInt()
+                    );
+                    attacksList.add(attack);
+                }
+
+                return new Card(
+                        setStage(stage),
+                        name,
+                        hp,
+                        setType(pokemon_type),
+                        null,
+                        attacksList,
+                        setType(weakness_type),
+                        setType(resistance_type),
+                        retreat_cost,
+                        game_set,
+                        regulation_mark,
+                        null,
+                        card_number
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
@@ -210,25 +228,22 @@ public class DatabaseServiceImpl implements DatabaseService {
             preparedStatement.setString(1, card.getName());
             preparedStatement.setInt(2, card.getHp());
 
-            // Передаем название покемона для эволюции и фамилию владельца
-            if (card.getEvolvesFrom() != null){
+            if (card.getEvolvesFrom() != null) {
                 saveCardToDatabase(card.getEvolvesFrom());
                 preparedStatement.setString(3, card.getEvolvesFrom().getName());
+            } else {
+                preparedStatement.setString(3, null);
             }
-            else{
-                preparedStatement.setString(3,  null);
-            }
+
             preparedStatement.setString(4, card.getGameSet());
-            preparedStatement.setString(5, card.getEvolvesFrom() != null ? card.getPokemonOwner().getSurName() : null);
+            preparedStatement.setString(5, card.getPokemonOwner() != null ? card.getPokemonOwner().getSurName() : null);
             preparedStatement.setString(6, card.getPokemonStage().name());
             preparedStatement.setString(7, card.getRetreatCost());
             preparedStatement.setString(8, card.getWeaknessType() != null ? card.getWeaknessType().name() : null);
             preparedStatement.setString(9, card.getResistanceType() != null ? card.getResistanceType().name() : null);
 
-            // Сериализуем список атак в JSON
             Gson gson = new GsonBuilder().create();
             String attackSkillsJson = gson.toJson(card.getSkills());
-            // Преобразуем строку в JSON
             preparedStatement.setObject(10, attackSkillsJson, java.sql.Types.OTHER);
 
             preparedStatement.setString(11, card.getPokemonType().name());
@@ -237,14 +252,10 @@ public class DatabaseServiceImpl implements DatabaseService {
 
             preparedStatement.executeUpdate();
 
-            if (card.getEvolvesFrom() != null) {
-                saveCardToDatabase(card.getEvolvesFrom());
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void createPokemonOwner(Student owner) {
@@ -257,6 +268,42 @@ public class DatabaseServiceImpl implements DatabaseService {
         }
         System.out.println(STR."Success \{getStudentFromDatabase(owner.getSurName())}");
     }
+
+    private Student getPokemonOwner(UUID ownerUUID){
+        String query = "SELECT * FROM student WHERE id = ?";
+        Properties databaseProperties = new Properties();
+
+        try{
+            databaseProperties.load(new FileInputStream("src/main/resources/database.properties"));
+            try (Connection connection = DriverManager.getConnection(
+                    databaseProperties.getProperty("database.url"),
+                    databaseProperties.getProperty("database.user"),
+                    databaseProperties.getProperty("database.password"));
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setObject(1, ownerUUID);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        Student student = new Student();
+
+                        student.setFamilyName(resultSet.getString("patronicName"));
+                        student.setFirstName(resultSet.getString("firstName"));
+                        student.setSurName(resultSet.getString("familyName"));
+                        student.setGroup(resultSet.getString("group"));
+
+                        return student;
+                    }
+                }
+            } catch (SQLException e) {
+                System.err.println("Ошибка получения карты из базы данных: " + e.getMessage());
+                return null;
+            }
+            return null;
+        } catch (IOException e) {
+            System.err.println("Ошибка загрузки файла: " + e.getMessage());
+        }
+        return null;
+    }
+
 
     public void getAllStudents() throws SQLException {
         Statement statement = connection.createStatement();
@@ -287,75 +334,4 @@ public class DatabaseServiceImpl implements DatabaseService {
             System.out.println("");
         }
     }
-
-
-    private Card getEvolvesFrom(UUID evolvesUUID) throws IOException {
-        String query = "SELECT * FROM card WHERE id = ?";
-        Properties databaseProperties = new Properties();
-
-        try {
-            databaseProperties.load(new FileInputStream("src/main/resources/database.properties"));
-            try (Connection connection = DriverManager.getConnection(
-                    databaseProperties.getProperty("database.url"),
-                    databaseProperties.getProperty("database.user"),
-                    databaseProperties.getProperty("database.password"));
-                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setObject(1, evolvesUUID);
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if (resultSet.next()) {
-                        Card card = new Card();
-
-                        card.setName(resultSet.getString("name"));
-                        card.setHp(resultSet.getInt("hp"));
-
-                        String nextEvolvesUuid = resultSet.getString("evolves_from");
-                        if (nextEvolvesUuid != null && !nextEvolvesUuid.isEmpty()) {
-                            try {
-                                UUID nextEvolvesUUID = UUID.fromString(nextEvolvesUuid);
-                                card.setEvolvesFrom(getEvolvesFrom(nextEvolvesUUID));
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-
-                        card.setGameSet(resultSet.getString("game_set"));
-                        card.setPokemonStage(PokemonStage.valueOf(resultSet.getString("stage")));
-                        card.setRetreatCost(resultSet.getString("retreat_cost"));
-                        card.setWeaknessType(EnergyType.valueOf(resultSet.getString("weakness_type")));
-
-                        String resistanceTypeValue = resultSet.getString("resistance_type");
-                        EnergyType resistanceType = null;
-                        if (resistanceTypeValue != null && !resistanceTypeValue.isEmpty()) {
-                            try {
-                                resistanceType = EnergyType.valueOf(resistanceTypeValue);
-                            } catch (IllegalArgumentException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                        card.setResistanceType(resistanceType);
-
-                        String attackSkillsJson = resultSet.getString("attack_skills");
-                        Gson gson = new Gson();
-                        List<AttackSkill> attackSkills = gson.fromJson(attackSkillsJson, new TypeToken<List<AttackSkill>>() {
-                        }.getType());
-                        card.setSkills(attackSkills);
-
-                        card.setPokemonType(EnergyType.valueOf(resultSet.getString("pokemon_type")));
-                        card.setRegulationMark((resultSet.getString("regulation_mark")).charAt(0));
-                        card.setNumber(resultSet.getString("card_number"));
-
-                        return card;
-                    }
-                }
-            } catch (SQLException e) {
-                System.err.println("Ошибка получения карты из базы данных: " + e.getMessage());
-                return null;
-            }
-            return null;
-        } catch (IOException e) {
-            System.err.println("Ошибка загрузки файла: " + e.getMessage());
-        }
-        return null;
-    }
-
 }

@@ -135,7 +135,7 @@ public class Card implements Serializable {
         return regulationMark;
     }
 
-    public void setRegulationMark(char regulationMark) {
+    public void setRegulationMark(Character regulationMark) {
         this.regulationMark = regulationMark;
     }
 
