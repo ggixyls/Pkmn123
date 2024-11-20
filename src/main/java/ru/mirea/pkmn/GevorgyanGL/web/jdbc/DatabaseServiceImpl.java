@@ -1,11 +1,9 @@
 package ru.mirea.pkmn.GevorgyanGL.web.jdbc;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import ru.mirea.pkmn.*;
 
 import java.io.FileInputStream;
@@ -86,7 +84,6 @@ public class DatabaseServiceImpl implements DatabaseService {
 
                 evolvesFrom = rs.getString("evolves_from");
 
-                // Считываем навыки атаки
                 ObjectMapper objectMapper = new ObjectMapper();
                 JsonNode jsonNode = objectMapper.readTree(attack_skill);
                 List<AttackSkill> attacksList = new ArrayList<>();
@@ -106,7 +103,6 @@ public class DatabaseServiceImpl implements DatabaseService {
                 char regulation_mark = rs.getString("regulation_mark").charAt(0);
                 String card_number = rs.getString("card_number");
 
-                // Создаем объект Card
                 card = new Card(
                         setStage(stage),
                         name,
@@ -134,7 +130,6 @@ public class DatabaseServiceImpl implements DatabaseService {
                 card.setEvolvesFrom(parentCard);
             }
         }
-
         return card;
     }
 
