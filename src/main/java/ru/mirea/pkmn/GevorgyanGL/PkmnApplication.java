@@ -46,10 +46,9 @@ public class PkmnApplication {
         CardExport cardExport = new CardExport();
         cardExport.exportCard(card1);
         Card card2 = cardImport.importCardFromFile("Palossand.crd");
-
         DatabaseServiceImpl db = new DatabaseServiceImpl();
-        db.createPokemonOwner(card2.getPokemonOwner());
-        db.saveCardToDatabase(card2);
+        //db.createPokemonOwner(card2.getPokemonOwner());
+        //db.saveCardToDatabase(card2);
         System.out.println('\n');
         db.getAllStudents();
         db.getAllCards();

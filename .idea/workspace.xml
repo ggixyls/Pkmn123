@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7f02369c-d3fb-4288-8f71-10a10213e197" name="Changes" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/jdbc/DatabaseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/jdbc/DatabaseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/PkmnApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/PkmnApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732062348865</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1732288009918</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732288009918</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
