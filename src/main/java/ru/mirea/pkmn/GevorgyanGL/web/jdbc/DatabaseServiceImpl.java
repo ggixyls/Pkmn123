@@ -231,7 +231,14 @@ public class DatabaseServiceImpl implements DatabaseService {
             }
 
             preparedStatement.setString(4, card.getGameSet());
-            preparedStatement.setString(5, card.getPokemonOwner() != null ? card.getPokemonOwner().getSurName() : null);
+
+            if (card.getEvolvesFrom() != null){
+                preparedStatement.setString(5,card.getPokemonOwner().getSurName());
+            }
+            else{
+                preparedStatement.setString(5, null);
+            }
+
             preparedStatement.setString(6, card.getPokemonStage().name());
             preparedStatement.setString(7, card.getRetreatCost());
             preparedStatement.setString(8, card.getWeaknessType() != null ? card.getWeaknessType().name() : null);
