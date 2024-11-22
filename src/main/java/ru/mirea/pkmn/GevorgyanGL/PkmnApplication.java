@@ -48,12 +48,12 @@ public class PkmnApplication {
         Card card2 = cardImport.importCardFromFile("Palossand.crd");
 
         DatabaseServiceImpl db = new DatabaseServiceImpl();
-        //db.createPokemonOwner(card2.getPokemonOwner());
-        //db.saveCardToDatabase(card2);
+        db.createPokemonOwner(card2.getPokemonOwner());
+        db.saveCardToDatabase(card2);
         System.out.println('\n');
         db.getAllStudents();
         db.getAllCards();
         System.out.println("\nСтудент из БД\n" + db.getStudentFromDatabase("Геворгян"));
-        System.out.println("\nКарта из БД\n" + db.getCardFromDatabase("Morgrem"));
+        System.out.println("\nКарта из БД\n" + db.getCardFromDatabase("Palossand"));
     }
 }
