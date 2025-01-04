@@ -6,7 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="7f02369c-d3fb-4288-8f71-10a10213e197" name="Changes" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/PkmnApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/PkmnApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/AttackSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/AttackSkill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/EnergyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/EnergyType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/CardExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/CardExport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/CardImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/CardImport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/PkmnApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/PkmnApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/http/PkmnHttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/http/PkmnHttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/http/PokemonTcgAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/http/PokemonTcgAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/jdbc/DatabaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/jdbc/DatabaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/jdbc/DatabaseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/jdbc/DatabaseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/PokemonStage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/PokemonStage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,12 +49,12 @@
     &quot;assignee&quot;: &quot;ggixyls&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ggixyls/Pkmn",
-    "accountId": "d44e2f54-9e72-41df-b135-6d0dc6f76c54"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ggixyls/Pkmn&quot;,
+    &quot;accountId&quot;: &quot;d44e2f54-9e72-41df-b135-6d0dc6f76c54&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -67,7 +78,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -162,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732288009918</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1732289524219</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732289524219</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

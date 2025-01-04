@@ -1,5 +1,6 @@
-package ru.mirea.pkmn.GevorgyanGL;
+package gevorgyan.pkmn.GevorgyanGL;
 
+import gevorgyan.pkmn.*;
 import ru.mirea.pkmn.*;
 
 import java.io.*;

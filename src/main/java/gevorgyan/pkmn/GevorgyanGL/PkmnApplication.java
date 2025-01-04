@@ -1,9 +1,11 @@
-package ru.mirea.pkmn.GevorgyanGL;
+package gevorgyan.pkmn.GevorgyanGL;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import gevorgyan.pkmn.AttackSkill;
+import gevorgyan.pkmn.Card;
 import ru.mirea.pkmn.*;
-import ru.mirea.pkmn.GevorgyanGL.web.http.PkmnHttpClient;
-import ru.mirea.pkmn.GevorgyanGL.web.jdbc.DatabaseServiceImpl;
+import gevorgyan.pkmn.GevorgyanGL.web.http.PkmnHttpClient;
+import gevorgyan.pkmn.GevorgyanGL.web.jdbc.DatabaseServiceImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;

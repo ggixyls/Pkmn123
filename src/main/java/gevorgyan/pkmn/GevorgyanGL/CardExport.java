@@ -1,6 +1,6 @@
-package ru.mirea.pkmn.GevorgyanGL;
+package gevorgyan.pkmn.GevorgyanGL;
 
-import ru.mirea.pkmn.Card;
+import gevorgyan.pkmn.Card;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;

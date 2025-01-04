@@ -1,9 +1,10 @@
-package ru.mirea.pkmn.GevorgyanGL.web.jdbc;
+package gevorgyan.pkmn.GevorgyanGL.web.jdbc;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import gevorgyan.pkmn.*;
 import ru.mirea.pkmn.*;
 
 import java.io.FileInputStream;

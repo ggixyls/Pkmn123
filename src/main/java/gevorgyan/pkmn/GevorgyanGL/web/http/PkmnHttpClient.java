@@ -1,4 +1,4 @@
-package ru.mirea.pkmn.GevorgyanGL.web.http;
+package gevorgyan.pkmn.GevorgyanGL.web.http;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.json.JsonMapper;

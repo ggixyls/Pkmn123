@@ -1,4 +1,4 @@
-package ru.mirea.pkmn;
+package gevorgyan.pkmn;
 
 public enum EnergyType {
     FIRE,

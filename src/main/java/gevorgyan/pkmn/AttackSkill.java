@@ -1,4 +1,4 @@
-package ru.mirea.pkmn;
+package gevorgyan.pkmn;
 
 import java.io.Serializable;
 
