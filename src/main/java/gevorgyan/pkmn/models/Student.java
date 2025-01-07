@@ -1,7 +1,6 @@
-package gevorgyan.pkmn;
+package gevorgyan.pkmn.models;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 public class Student implements Serializable {
     public static final long serialVersionUID = 1L;
@@ -62,4 +61,6 @@ public class Student implements Serializable {
                 familyName + ", " +
                 group;
     }
+
+
 }

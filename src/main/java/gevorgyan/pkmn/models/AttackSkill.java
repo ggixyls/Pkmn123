@@ -1,4 +1,4 @@
-package gevorgyan.pkmn;
+package gevorgyan.pkmn.models;
 
 import java.io.Serializable;
 
@@ -16,6 +16,8 @@ public class AttackSkill implements Serializable {
         this.cost = cost;
         this.damage = damage;
     }
+
+    public AttackSkill() {}
 
     public String getDescription() {return description;}
 

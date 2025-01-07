@@ -1,4 +1,4 @@
-package gevorgyan.pkmn;
+package gevorgyan.pkmn.models;
 
 import java.io.Serializable;
 import java.util.List;

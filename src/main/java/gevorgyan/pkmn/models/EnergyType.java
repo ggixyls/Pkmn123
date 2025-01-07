@@ -1,4 +1,4 @@
-package gevorgyan.pkmn;
+package gevorgyan.pkmn.models;
 
 public enum EnergyType {
     FIRE,

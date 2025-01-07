@@ -5,20 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f02369c-d3fb-4288-8f71-10a10213e197" name="Changes" comment="Initial commit">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migration/V1__init_pkmn_db.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migration/V2__insert_data_students.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migration/V3__insert_data_cards.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migration/V4__update_student_group_names.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migration/V5__create_security_entities.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/clients/PokemonCardResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/clients/RestClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/config/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/controller/CardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/controller/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/dao/CardDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/dao/StudentDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/deserializer/SkillDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/entity/CardEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/entity/EnergyTypeConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/entity/StudentEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/repository/CardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/repository/StudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/service/CardService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/service/ICMP/CardServiceIMPL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/service/ICMP/DataTesting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/service/ICMP/StudentServiceIMPL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/service/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/AttackSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/AttackSkill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/EnergyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/EnergyType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/CardExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/CardExport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/CardImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/CardImport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/PkmnApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/PkmnApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/http/PkmnHttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/http/PkmnHttpClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/http/PokemonTcgAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/http/PokemonTcgAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/jdbc/DatabaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/jdbc/DatabaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/GevorgyanGL/web/jdbc/DatabaseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/jdbc/DatabaseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/PokemonStage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/PokemonStage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/mirea/pkmn/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Corvisquire.crd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Glastrier (1).crd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Morgrem.crd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Palossand.crd" beforeDir="false" afterPath="$PROJECT_DIR$/Palossand.crd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/AttackSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/models/AttackSkill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/models/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/EnergyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/models/EnergyType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/CardExport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/CardImport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/PkmnApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/http/PkmnHttpClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/http/PokemonTcgAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/jdbc/DatabaseService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/GevorgyanGL/web/jdbc/DatabaseServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/PokemonStage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/models/PokemonStage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gevorgyan/pkmn/models/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +62,7 @@
         <option value="package-info" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -56,7 +88,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -69,12 +101,13 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
     &quot;Application.PkmnApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gagik10/IdeaProjects/Pkmn&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gagik10/IdeaProjects/Pkmn123/db/migration&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -83,8 +116,12 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="gevorgyan.pkmn" />
       <recent name="ru.mirea.pkmn.GevorgyanGL.web.jdbc" />
       <recent name="ru.mirea.pkmn.GevorgyanGL" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/db/migration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -181,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732289524219</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1736003478277</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1736003478277</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
