@@ -1,10 +1,10 @@
 package gevorgyan.pkmn.service.IMPL;
 
 import gevorgyan.pkmn.clients.PokemonCardResponse;
-import gevorgyan.pkmn.clients.RestClient;
 import gevorgyan.pkmn.dao.CardDao;
 import gevorgyan.pkmn.entity.CardEntity;
 import gevorgyan.pkmn.service.CardService;
+import gevorgyan.pkmn.service.RestClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,10 +66,15 @@ public class CardServiceIMPL implements CardService {
 
     @Override
     public String getCardImageByName(String cardName) {
+        return "";
+    }
+
+    /*@Override
+    public String getCardImageByName(String cardName) {
         PokemonCardResponse response = restClient.getCardByName(cardName);
         if (response != null && !response.getData().isEmpty()) {
-            return response.getData().get(0).getImages().getLarge(); // Получаем большое изображение карты
+            return response.getData().get(0).getImages().getLarge();
         }
         return null; // Если карта не найдена
-    }
+    }*/
 }

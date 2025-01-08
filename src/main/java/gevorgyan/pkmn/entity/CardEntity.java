@@ -69,7 +69,8 @@ public class CardEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Card{" +
+        return
+                "Card{" +
                 "pokemonStage=" + pokemonStage +
                 ", name='" + name + '\'' +
                 ", hp=" + hp +

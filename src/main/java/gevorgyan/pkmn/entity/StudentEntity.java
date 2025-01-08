@@ -21,19 +21,15 @@ public class StudentEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name="firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="surName")
+    @Column(name = "sur_name")
     private String surName;
 
-    @Column(name="familyName")
+    @Column(name = "family_name")
     private String familyName;
 
-    @Column(name="\"group\"")
+    @Column(name = "\"group\"")
     private String group;
-
-    public String getFatherName() {
-        return familyName;
-    }
 }

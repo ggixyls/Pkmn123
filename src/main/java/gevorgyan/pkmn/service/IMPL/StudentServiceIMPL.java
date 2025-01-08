@@ -1,7 +1,5 @@
 package gevorgyan.pkmn.service.IMPL;
 
-import gevorgyan.pkmn.clients.PokemonCardResponse;
-import gevorgyan.pkmn.clients.RestClient;
 import gevorgyan.pkmn.dao.StudentDao;
 import gevorgyan.pkmn.entity.StudentEntity;
 import gevorgyan.pkmn.service.StudentService;
@@ -30,7 +28,7 @@ public class StudentServiceIMPL implements StudentService {
 
     @Override
     public StudentEntity saveStudent(StudentEntity student) {
-        if (studentDao.findByFullName(student.getFirstName(), student.getSurName(), student.getFatherName()).isPresent()) {
+        if (studentDao.findByFullName(student.getFirstName(), student.getSurName(), student.getFamilyName()).isPresent()) {
             throw new RuntimeException("Student already exists.");
         }
         return studentDao.save(student);
